@@ -14,6 +14,9 @@ public class Plane : MonoBehaviour
     public float speed = 1;
     public AnimationCurve landing;
     float landingTimer;
+    bool dangerZone;
+    public SpriteRenderer spriteRenderer;
+    public CircleCollider2D circleCollider;
 
     void Start()
     {
@@ -22,6 +25,8 @@ public class Plane : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         speed = Random.Range(1, 4);
         rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
@@ -66,7 +71,39 @@ public class Plane : MonoBehaviour
             }
 
         }
+      
+
+        
+
     }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        spriteRenderer.color = Color.red;
+        
+        
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        float dist = Vector3.Distance(currentPosition, collision.transform.position);
+        if (dist < 0.1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.white;
+    }   
 
     void OnMouseDown()
     {

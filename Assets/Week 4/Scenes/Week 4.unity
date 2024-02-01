@@ -246,7 +246,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   spawnTime: 5
-  PlanePrefab: {fileID: 5820096833783545397, guid: 1c519733726773a43ade594d4b7ffebe, type: 3}
+  PlanePrefab:
+  - {fileID: 5820096833783545397, guid: 1c519733726773a43ade594d4b7ffebe, type: 3}
+  - {fileID: 5820096833783545397, guid: caf10c73e24db024998d7a189d17b945, type: 3}
+  - {fileID: 5820096833783545397, guid: 33a40466d44b3a24d9aa00b3b22a9838, type: 3}
+  - {fileID: 5820096833783545397, guid: f199874e22ccb71488f85f5ac861fd4a, type: 3}
 --- !u!4 &1910775096
 Transform:
   m_ObjectHideFlags: 0

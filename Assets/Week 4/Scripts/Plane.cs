@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Plane : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
-        speed = Random.Range(1, 3);
+        speed = Random.Range(1, 4);
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -37,6 +38,7 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
+
 
         if(Input.GetKey(KeyCode.Space))
         {

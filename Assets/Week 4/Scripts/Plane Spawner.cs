@@ -8,7 +8,7 @@ public class PlaneSpawner : MonoBehaviour
     public float speed = 1;
     public float spawnTime = 5.0f;
     private float timer = 0.0f;
-    public GameObject PlanePrefab;
+    public GameObject[] PlanePrefab = new GameObject[4];
     Vector3 spawnPos;
     Quaternion spawnRot;
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class PlaneSpawner : MonoBehaviour
         if (timer > spawnTime)
         {
             spawnTime += 5.0f;
-            Instantiate(PlanePrefab, spawnPos, spawnRot);
+            Instantiate(PlanePrefab[Random.Range(0,4)], spawnPos, spawnRot);
             //Changes the Position and Rotation of the plane as it instantiates
             spawnPos.x = Random.Range(-5, 5);
             spawnPos.y = Random.Range(-5, 5);

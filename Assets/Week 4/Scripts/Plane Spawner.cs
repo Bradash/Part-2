@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 
 public class PlaneSpawner : MonoBehaviour
 {
-    public float speed = 1;
+    public int ScoreCount = 0;
     public float spawnTime = 5.0f;
     private float timer = 0.0f;
     public GameObject[] PlanePrefab = new GameObject[4];
@@ -18,7 +16,7 @@ public class PlaneSpawner : MonoBehaviour
         spawnPos.x = 0;
         spawnPos.y = 0;
         spawnPos.z = 0;
-        spawnRot = Quaternion.Euler(0,0,0);
+        spawnRot = Quaternion.Euler(0, 0, 0);
         //Forces a plane to spawn as soon as playmode is initiated starts
         timer = 5;
     }
@@ -30,7 +28,9 @@ public class PlaneSpawner : MonoBehaviour
         if (timer > spawnTime)
         {
             spawnTime += 5.0f;
-            Instantiate(PlanePrefab[Random.Range(0,4)], spawnPos, spawnRot);
+            GameObject Plane = 
+            Instantiate(PlanePrefab[Random.Range(0, 4)], spawnPos, spawnRot);
+            Plane.GetComponent<Plane>().PlaneSpawner = this;
             //Changes the Position and Rotation of the plane as it instantiates
             spawnPos.x = Random.Range(-5, 5);
             spawnPos.y = Random.Range(-5, 5);

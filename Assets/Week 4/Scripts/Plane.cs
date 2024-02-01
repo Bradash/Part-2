@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class Plane : MonoBehaviour
 {
@@ -17,6 +16,9 @@ public class Plane : MonoBehaviour
     bool dangerZone;
     public SpriteRenderer spriteRenderer;
     public CircleCollider2D circleCollider;
+    bool autoLanding;
+    public int ScoreCount = 0;
+    public PlaneSpawner PlaneSpawner;
 
     void Start()
     {
@@ -27,12 +29,14 @@ public class Plane : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
+        autoLanding = false;
+        PlaneSpawner.GetComponent<PlaneSpawner>();
     }
 
     private void FixedUpdate()
     {
         currentPosition = transform.position;
-        if(points.Count > 0 )
+        if (points.Count > 0)
         {
             Vector2 direction = points[0] - currentPosition;
             float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
@@ -41,25 +45,28 @@ public class Plane : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + (Vector2)transform.up * speed * Time.deltaTime);
     }
 
+
     void Update()
     {
 
 
-        if(Input.GetKey(KeyCode.Space))
+        if (autoLanding == true)
         {
             landingTimer += 0.5f * Time.deltaTime;
             float interpolation = landing.Evaluate(landingTimer);
-            if(transform.localScale.z < 0.1f)
+            if (transform.localScale.z < 0.1f)
             {
                 Destroy(gameObject);
+                PlaneSpawner.ScoreCount += 1;
+                Debug.Log(ScoreCount);
             }
             transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
         }
 
         lineRenderer.SetPosition(0, transform.position);
-        if(points.Count > 0 )
+        if (points.Count > 0)
         {
-            if(Vector2.Distance(currentPosition, points[0]) < newPointThreshold)
+            if (Vector2.Distance(currentPosition, points[0]) < newPointThreshold)
             {
                 points.RemoveAt(0);
 
@@ -71,9 +78,9 @@ public class Plane : MonoBehaviour
             }
 
         }
-      
 
-        
+
+
 
     }
 
@@ -84,26 +91,38 @@ public class Plane : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
-        spriteRenderer.color = Color.red;
-        
-        
+        if (collision.tag == "Player")
+        {
+            spriteRenderer.color = Color.red;
+        }
 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        float dist = Vector3.Distance(currentPosition, collision.transform.position);
-        if (dist < 0.1)
+        if (collision.tag == "Player")
         {
-            Destroy(gameObject);
+            float dist = Vector3.Distance(currentPosition, collision.transform.position);
+            if (dist < 0.1)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+        if (collision.tag == "Runway")
+        {
+            autoLanding = collision.OverlapPoint(transform.position);
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        spriteRenderer.color = Color.white;
-    }   
+        if (collision.tag == "Player")
+        {
+            spriteRenderer.color = Color.white;
+        }
+
+    }
 
     void OnMouseDown()
     {
@@ -118,10 +137,10 @@ public class Plane : MonoBehaviour
 
         if (Vector2.Distance(lastPosition, newPostition) > newPointThreshold)
         {
-         points.Add(newPostition);
-         lineRenderer.positionCount++;
-         lineRenderer.SetPosition(lineRenderer.positionCount -1, newPostition);
-         lastPosition = newPostition;
+            points.Add(newPostition);
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPostition);
+            lastPosition = newPostition;
         }
     }
 }

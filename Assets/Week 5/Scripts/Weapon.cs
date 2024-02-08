@@ -16,7 +16,10 @@ public class Weapon : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Collision sends TakeDamage and destroy itself as a game object
+        if (collision.gameObject.tag == "Weapon")
+        {
+            return;
+        }
         collision.gameObject.SendMessage("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
         

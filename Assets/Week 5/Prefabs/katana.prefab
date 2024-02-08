@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8089635480388429737}
   - component: {fileID: 4494752946903131337}
   - component: {fileID: 6925624232023342734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: katana
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7165438220465481160}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0

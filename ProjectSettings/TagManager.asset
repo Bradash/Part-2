@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Runway
+  - Weapon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Weapon
   - Water
   - UI
   - 

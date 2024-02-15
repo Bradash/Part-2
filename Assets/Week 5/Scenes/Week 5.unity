@@ -1634,6 +1634,7 @@ MonoBehaviour:
   speed: 3
   health: 0
   maxHealth: 5
+  savedhealth: 0
 --- !u!95 &4865965022839175573
 Animator:
   serializedVersion: 5

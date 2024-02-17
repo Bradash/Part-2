@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Week 4/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Week 6/Scenes/UI Scene.unity
-    guid: 3d8dc7709d8f49141bdf23080d993d86
+    path: Assets/Assignment/Scenes/Main Menu.unity
+    guid: 730cb74b8268db241b15b5bc82e60939
   - enabled: 1
-    path: Assets/Week 5/Scenes/Week 5.unity
-    guid: effce56a7b471ac4ba18ef14fd10dbaf
+    path: Assets/Assignment/Scenes/Stage 1.unity
+    guid: 5ed1fa679b897f443b4636eb6ed1531c
   m_configObjects: {}

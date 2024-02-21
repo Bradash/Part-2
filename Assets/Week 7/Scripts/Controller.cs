@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
@@ -13,7 +14,17 @@ public class Controller : MonoBehaviour
     public float maxCharge;
     Vector2 direction;
     public static int Score;
+    public TextMeshProUGUI ScoreUI;
+    public static Controller ball;
     public static FootballPlayer CurrentSelection { get; private set; }
+
+    private void Start()
+    {
+        if (ball == null )
+        {
+            ball = this;
+        }
+    }
     public static void SetCurrentSelection(FootballPlayer player)
     {
         if (CurrentSelection != null)
@@ -49,5 +60,8 @@ public class Controller : MonoBehaviour
         {
             direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)CurrentSelection.transform.position).normalized * charge;
         }
+
+         ScoreUI.text = Score.ToString();
+
     }
 }

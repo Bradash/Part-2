@@ -38,6 +38,10 @@ public class FootballPlayer : MonoBehaviour
     {
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
+    private void OnBecameInvisible()
+    {
+        transform.position = Vector3.zero;
+    }
 }
 
 

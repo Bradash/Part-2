@@ -7,6 +7,8 @@ using UnityEngine;
 public class FootballPlayer : MonoBehaviour
 {
     SpriteRenderer sr;
+    Rigidbody2D rb;
+    public float speed = 100;
     public float sizeMouse = 10.002f;
     public Color selectedColour = Color.yellow;
     public Color unselectedColour = new Color(130f, 0f, 0f);
@@ -14,6 +16,7 @@ public class FootballPlayer : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         Selected(false);
     }
     private void OnMouseDown()
@@ -30,6 +33,10 @@ public class FootballPlayer : MonoBehaviour
         {
             sr.color = unselectedColour;
         }
+    }
+    public void Move(Vector2 direction)
+    {
+        rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 }
 

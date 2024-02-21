@@ -6,35 +6,31 @@ using UnityEngine;
 
 public class FootballPlayer : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer sr;
     public float sizeMouse = 10.002f;
-    public Color selectedColor = Color.yellow;
-    public Color unselectedColor = new Color(130f, 0f, 0f);
+    public Color selectedColour = Color.yellow;
+    public Color unselectedColour = new Color(130f, 0f, 0f);
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
+        Selected(false);
     }
     private void OnMouseDown()
     {
-        if (Vector3.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.position) < sizeMouse)
-        {
-            spriteRenderer.color = selectedColor;
-        }
-        if (Vector3.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.position) > sizeMouse)
-        {
-            spriteRenderer.color = unselectedColor;
-        }
+        Controller.SetCurrentSelection(this);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Selected(bool isSelected)
     {
-        Debug.Log(Vector3.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.position));
-
-        if (Input.GetMouseButtonDown(0))
+        if (isSelected)
         {
-            OnMouseDown();
+            sr.color = selectedColour;
+        }
+        else
+        {
+            sr.color = unselectedColour;
         }
     }
 }
+
+

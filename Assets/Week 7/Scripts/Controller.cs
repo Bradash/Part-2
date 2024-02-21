@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Controller : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Controller : MonoBehaviour
     float charge;
     public float maxCharge;
     Vector2 direction;
+    public static int Score;
     public static FootballPlayer CurrentSelection { get; private set; }
     public static void SetCurrentSelection(FootballPlayer player)
     {

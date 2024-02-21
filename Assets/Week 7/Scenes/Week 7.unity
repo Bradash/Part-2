@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 150068378}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Untagged
+  m_TagString: Net
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3522,6 +3522,7 @@ GameObject:
   - component: {fileID: 777268255}
   - component: {fileID: 777268258}
   - component: {fileID: 777268257}
+  - component: {fileID: 777268259}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -3658,6 +3659,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &777268259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777268252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f680ee750e7ca24c81f85e445b7086c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &867498635
 GameObject:
   m_ObjectHideFlags: 0

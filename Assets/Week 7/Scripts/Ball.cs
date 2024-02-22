@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 
 public class Ball : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public static Rigidbody2D rb;
     Vector3 startingPosition;
 
     private void Start()

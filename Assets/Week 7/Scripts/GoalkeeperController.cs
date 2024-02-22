@@ -12,20 +12,21 @@ public class GoalkeeperController : MonoBehaviour
     float keeperDistance;
     Vector3 keeperPosition;
     public Rigidbody2D rb;
+    public float interpolation = 0.825f;
 
     void Start()
     {
         goalPosition = new Vector3(0f, 5f, 0f);
-        playerPosition = Controller.CurrentSelection.transform.position;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerPosition = Controller.CurrentSelection.transform.position;
         keeperDistance = Vector3.Distance(goalPosition, playerPosition);
 
-        keeperPosition = goalPosition - playerPosition;
+        
+        keeperPosition = Vector3.Lerp(goalPosition, playerPosition, interpolation);
         rb.transform.position = keeperPosition;
     }
 }
